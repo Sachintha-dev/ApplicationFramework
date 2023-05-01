@@ -9,8 +9,8 @@ function Button() {
         style={{
           display: "fixed",
           position: "fixed",
-          marginTop: 600,
-          marginLeft: 1380,
+          marginTop: 560,
+          marginLeft: 1360,
           backgroundColor: "#002147",
           color: "white",
         }}

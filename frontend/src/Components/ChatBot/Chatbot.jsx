@@ -7,7 +7,7 @@ function Chat_Bot() {
       style={{
         display: "fixed",
         position: "fixed",
-        marginTop: 50,
+        marginTop: 1,
         marginLeft: 1090,
       }}
       headerTitle="AthleteCare"
