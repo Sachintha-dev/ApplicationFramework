@@ -19,7 +19,17 @@ const breakfastDietPlanScheme = new mongoose.Schema({
         default: Date.now,
       },
 
-      calories: {
+      totalCalories: {
+        type: Number,
+        required: true,
+      },
+
+      totalProtien: {
+        type: Number,
+        required: true,
+      },
+
+      totalFat: {
         type: Number,
         required: true,
       },

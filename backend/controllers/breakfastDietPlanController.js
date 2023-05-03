@@ -6,7 +6,9 @@ const addBreakfastPlan = async (req, res) => {
   const playerName = req.body.playerName;
   const dietID = req.body.dietID;
   const date = Date(req.body.date);
-  const calories = Number(req.body.calories);
+  const totalCalories = Number(req.body.totalCalories);
+  const totalFat = Number(req.body.totalFat);
+  const totalProtien = Number(req.body.totalProtien);
   const dietDescription = req.body.dietDescription;
 
   let breakfast = await Breakfast.findOne({ playerID: playerID });
@@ -14,13 +16,24 @@ const addBreakfastPlan = async (req, res) => {
     breakfast = new Breakfast({
       playerID,
       playerName,
-      dietPlan: [{ dietID, date, calories, dietDescription }],
+      dietPlan: [
+        {
+          dietID,
+          date,
+          dietDescription,
+          totalCalories,
+          totalFat,
+          totalProtien,
+        },
+      ],
     });
   } else {
     breakfast.dietPlan.push({
       dietID,
       date,
-      calories,
+      totalCalories,
+      totalFat,
+      totalProtien,
       dietDescription,
     });
   }
@@ -52,7 +65,9 @@ const getBreakfastPlanDetails = async (req, res) => {
         return {
           dietID: dietPlan.dietID,
           date: dietPlan.date,
-          calories: dietPlan.calories,
+          totalCalories: dietPlan.totalCalories,
+          totalFat: dietPlan.totalFat,
+          totalProtien: dietPlan.totalProtien,
           dietDescription: dietPlan.dietDescription,
         };
       });

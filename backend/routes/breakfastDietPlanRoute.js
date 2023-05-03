@@ -17,7 +17,7 @@ router.get("/getBreakfastPlayerDetails/:playerID", getBreakfastPlanDetails);
 
 //Delete a specific breakfast diet plan
 router.delete(
-  "/getBreakfastPlayerDetails/:playerID/:dietID",
+  "/deleteBreakfastPlayerDetails/:playerID/:dietID",
   deleteBreakfastDietDetails
 );
 

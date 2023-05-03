@@ -6,6 +6,7 @@ const app = express();
 
 const brekfastDiet = require("./routes/breakfastDietPlanRoute");
 app.use(express.json());
+app.use(cors());
 
 const PORT = 5012;
 
