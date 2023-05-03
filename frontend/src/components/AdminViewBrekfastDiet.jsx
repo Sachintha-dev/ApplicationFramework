@@ -18,7 +18,11 @@ function AdminViewBrekfastDiet() {
       }
 
       const records = await response.json();
-      console.log(records);
+      records.forEach((dietPlan) => {
+        if (dietPlan.type == "Breakfast") {
+          playerDietPlan.push(dietPlan);
+        }
+      });
       setPlayerDietPlan(records);
     }
     fetchPlayerDietData();

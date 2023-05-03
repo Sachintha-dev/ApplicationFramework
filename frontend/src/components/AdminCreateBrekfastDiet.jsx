@@ -8,6 +8,7 @@ function AdminCreateBrekfastDiet() {
   const [playerName, setPlayerName] = useState("");
   const [dietID, setDietID] = useState("");
   const [date, setDate] = useState("");
+  const [type, setType] = useState("");
   const [dietDescription, setDietDescription] = useState("");
   const [totalCalories, setTotalCalories] = useState("");
   const [totalProtien, setTotalProtein] = useState("");
@@ -23,6 +24,7 @@ function AdminCreateBrekfastDiet() {
       playerName,
       dietID,
       date,
+      type,
       dietDescription,
       totalCalories,
       totalProtien,
@@ -33,7 +35,9 @@ function AdminCreateBrekfastDiet() {
       playerName,
       dietID,
       date,
-      dietDescription,
+      diet,
+      type,
+      Description,
       totalCalories,
       totalFat,
       totalProtien
@@ -84,10 +88,8 @@ function AdminCreateBrekfastDiet() {
           value={playerID}
           onChange={(e) => setPlayerID(e.target.value)}
         />
-
         <br />
         <br />
-
         <label htmlFor="player_Name">Enter Player Name</label>
         <br />
         <input
@@ -97,7 +99,20 @@ function AdminCreateBrekfastDiet() {
         />
         <br />
         <br />
+        <label htmlFor="player_Name">Enter Meal type</label>
+        <br />
+        <select
+          name="type"
+          id="meals"
+          onChange={(e) => setType(e.target.value)}
+        >
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+        </select>
 
+        <br />
+        <br />
         <label htmlFor="diet_id">Enter Diet_ID</label>
         <br />
         <input
@@ -107,7 +122,6 @@ function AdminCreateBrekfastDiet() {
         />
         <br />
         <br />
-
         <label htmlFor="diet_date">Enter Diet Date</label>
         <br />
         <input
@@ -117,7 +131,6 @@ function AdminCreateBrekfastDiet() {
         />
         <br />
         <br />
-
         <label htmlFor="meal_description">Enter Meal Description</label>
         <br />
         <textarea
@@ -126,8 +139,9 @@ function AdminCreateBrekfastDiet() {
         />
         <br />
         <br />
-
-        <label htmlFor="total_calories">Enter total Calories gained</label>
+        <label htmlFor="total_calories">
+          Enter total Calories to be gained
+        </label>
         <br />
         <input
           type="number"
@@ -136,8 +150,7 @@ function AdminCreateBrekfastDiet() {
         />
         <br />
         <br />
-
-        <label htmlFor="total_fat">Enter total Fat gained</label>
+        <label htmlFor="total_fat">Enter total Fat to be gained</label>
         <br />
         <input
           type="number"
@@ -146,8 +159,7 @@ function AdminCreateBrekfastDiet() {
         />
         <br />
         <br />
-
-        <label htmlFor="total_protein">Enter total Protein gained</label>
+        <label htmlFor="total_protein">Enter total Protein to be gained</label>
         <br />
         <input
           type="number"

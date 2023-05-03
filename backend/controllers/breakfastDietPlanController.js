@@ -6,6 +6,7 @@ const addBreakfastPlan = async (req, res) => {
   const playerName = req.body.playerName;
   const dietID = req.body.dietID;
   const date = Date(req.body.date);
+  const type = req.body.type;
   const totalCalories = Number(req.body.totalCalories);
   const totalFat = Number(req.body.totalFat);
   const totalProtien = Number(req.body.totalProtien);
@@ -20,6 +21,7 @@ const addBreakfastPlan = async (req, res) => {
         {
           dietID,
           date,
+          type,
           dietDescription,
           totalCalories,
           totalFat,
@@ -31,6 +33,7 @@ const addBreakfastPlan = async (req, res) => {
     breakfast.dietPlan.push({
       dietID,
       date,
+      type,
       totalCalories,
       totalFat,
       totalProtien,
@@ -65,6 +68,7 @@ const getBreakfastPlanDetails = async (req, res) => {
         return {
           dietID: dietPlan.dietID,
           date: dietPlan.date,
+          type: dietPlan.type,
           totalCalories: dietPlan.totalCalories,
           totalFat: dietPlan.totalFat,
           totalProtien: dietPlan.totalProtien,

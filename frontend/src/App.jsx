@@ -4,6 +4,7 @@ import DietientHome from "./components/DietientHome";
 import AdminBreakfastDietPlan from "./components/AdminBreakfastDietPlan";
 import AdminViewBrekfastDiet from "./components/AdminViewBrekfastDiet";
 import AdminCreateBrekfastDiet from "./components/AdminCreateBrekfastDiet";
+import CricketerDietplanHome from "./components/CricketerDietplanHome";
 
 function App() {
   return (
@@ -25,6 +26,12 @@ function App() {
             path="/createNewDietPlan/:playerID/"
             exact
             element={<AdminCreateBrekfastDiet />}
+          />
+
+          <Route
+            path="/cricketerDietPlan/:playerID/"
+            exact
+            element={<CricketerDietplanHome />}
           />
         </Routes>
       </BrowserRouter>
