@@ -1,24 +1,23 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { useState } from 'react'
+import { useState } from "react";
 import React from "react";
 import Home from "../src/Components/HomePage/Home";
 import SideBar from "../src/Components/SideBar/SideBar";
-import Chatbot from "../src/Components/ChatBot/Chatbot";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import DietientHome from "./components/DietientHome";
-import AdminBreakfastDietPlan from "./components/AdminBreakfastDietPlan";
-import AdminViewBrekfastDiet from "./components/AdminViewBrekfastDiet";
-import AdminCreateBrekfastDiet from "./components/AdminCreateBrekfastDiet";
+import DietientHome from "./components/DietientPage/DietientHome";
+import AdminBreakfastDietPlan from "./components/DietientPage/AdminBreakfastDietPlan";
+import AdminViewBrekfastDiet from "./components/DietientPage/AdminViewBrekfastDiet";
+import AdminCreateBrekfastDiet from "./components/DietientPage/AdminCreateBrekfastDiet";
 import CricketerDietplanHome from "./components/CricketerDietplanHome";
+import Chatbot from "./Components/ChatBot/Chatbot";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-         <Route path="/sidebar" element={<SideBar />} />
-        <Route path="/chatbot" element={<Chatbot />} />
+          <Route path="/sidebar" element={<SideBar />} />
+          <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/" exact element={<DietientHome />} />
           <Route
             path="/breakfastDietPlan"
