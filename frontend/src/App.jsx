@@ -10,38 +10,13 @@ import AdminViewBrekfastDiet from "./components/DietientPage/AdminViewBrekfastDi
 import AdminCreateBrekfastDiet from "./components/DietientPage/AdminCreateBrekfastDiet";
 import CricketerDietplanHome from "./components/CricketerDietplanHome";
 import Chatbot from "./Components/ChatBot/Chatbot";
+import Login from "./Components/Login/Login";
+import LoginPage from "./Components/Login page/LoginPage";
 
 function App() {
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/sidebar" element={<SideBar />} />
-          <Route path="/chatbot" element={<Chatbot />} />
-          <Route path="/" exact element={<DietientHome />} />
-          <Route
-            path="/breakfastDietPlan"
-            exact
-            element={<AdminBreakfastDietPlan />}
-          />
-          <Route
-            path="/breakfastDietPlan/:playerID"
-            exact
-            element={<AdminViewBrekfastDiet />}
-          />
-          <Route
-            path="/createNewDietPlan/:playerID/"
-            exact
-            element={<AdminCreateBrekfastDiet />}
-          />
-
-          <Route
-            path="/cricketerDietPlan/:playerID/"
-            exact
-            element={<CricketerDietplanHome />}
-          />
-        </Routes>
-      </BrowserRouter>
+      <LoginPage />
     </div>
   );
 }
