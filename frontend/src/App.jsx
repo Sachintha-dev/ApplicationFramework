@@ -10,6 +10,7 @@ import AdminViewBrekfastDiet from "./components/DietientPage/AdminViewBrekfastDi
 import AdminCreateBrekfastDiet from "./components/DietientPage/AdminCreateBrekfastDiet";
 import CricketerDietplanHome from "./components/CricketerDietplanHome";
 import Chatbot from "./Components/ChatBot/Chatbot";
+import AdminEditBreakfastDetails from "./components/DietientPage/AdminEditBreakfastDetails";
 
 function App() {
   return (
@@ -29,6 +30,13 @@ function App() {
             exact
             element={<AdminViewBrekfastDiet />}
           />
+
+          <Route
+            path="/createNewDietPlan/"
+            exact
+            element={<AdminCreateBrekfastDiet />}
+          />
+
           <Route
             path="/createNewDietPlan/:playerID/"
             exact
@@ -39,6 +47,12 @@ function App() {
             path="/cricketerDietPlan/:playerID/"
             exact
             element={<CricketerDietplanHome />}
+          />
+
+          <Route
+            path="/editDietPlan/:dietID"
+            exact
+            element={<AdminEditBreakfastDetails />}
           />
         </Routes>
       </BrowserRouter>

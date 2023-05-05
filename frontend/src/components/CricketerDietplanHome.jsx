@@ -84,7 +84,10 @@ function CricketerDietplanHome() {
         type: "bar",
         data: chartData,
         options: {
-          aspectRatio: true,
+          responsive: true,
+          maintainAspectRatio: false,
+          width: 300,
+          height: 200,
         },
       });
 
@@ -94,13 +97,10 @@ function CricketerDietplanHome() {
 
   return (
     <div>
-      <h1>
-        CricketerDietplanHome
-        <canvas
-          ref={chartContainer}
-          style={{ height: "100px", width: "100px" }}
-        />
-      </h1>
+      <h1>CricketerDietplanHome</h1>
+      <div style={{ height: "400px" }}>
+        <canvas ref={chartContainer} />
+      </div>
     </div>
   );
 }

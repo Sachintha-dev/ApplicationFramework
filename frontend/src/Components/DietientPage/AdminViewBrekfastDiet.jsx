@@ -3,6 +3,9 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 function AdminViewBrekfastDiet() {
   const [playerDietPlan, setPlayerDietPlan] = useState([]);
+  const [playerName, setPlayerName] = useState([]);
+  const [search, setsearch] = useState("");
+
   const params = useParams();
 
   useEffect(() => {
@@ -24,6 +27,8 @@ function AdminViewBrekfastDiet() {
         }
       });
       setPlayerDietPlan(records);
+      setPlayerName(records.playerName);
+      console.log(records);
     }
     fetchPlayerDietData();
   }, [params.id]);
@@ -50,13 +55,51 @@ function AdminViewBrekfastDiet() {
 
   return (
     <div>
-      <h2>View Breakfast Diet Plan of Player</h2>
-      <button style={{ float: "right" }}>
-        <Link to={`/createNewDietPlan/${params.playerID.toString()}`}>
+      <center>
+        <h1>View Breakfast Diet Plan of Player</h1>
+        <h1>{playerName}</h1>
+      </center>
+      <button
+        style={{
+          float: "right",
+          backgroundColor: "rgb(0, 150, 255)",
+          color: "white",
+          padding: "14px",
+          width: 200,
+          fontWeight: "bold",
+          borderRadius: "20px",
+        }}
+      >
+        <Link
+          to={`/createNewDietPlan/${params.playerID.toString()}`}
+          style={{ color: "white", textDecoration: "none" }}
+        >
           Create New Diet Plan
         </Link>
       </button>
       <br /> <br />
+      <br />
+      <br />
+      <br />
+      <div>
+        <input
+          style={{
+            marginLeft: "60px",
+            height: "50px",
+            width: "250px",
+            borderRadius: "35px",
+            backgroundColor: "lightgrey",
+          }}
+          type="search"
+          placeholder="   Search for DietPlans ..."
+          name="searchQuery"
+          onChange={(e) => {
+            setsearch(e.target.value);
+          }}
+        ></input>
+        <br />
+        <br />
+      </div>
       <center>
         <table
           style={{
@@ -134,75 +177,119 @@ function AdminViewBrekfastDiet() {
               Action
             </th>
           </tr>
-          {playerDietPlan.map((breakfastDiet) => {
-            return breakfastDiet.dietPlan.map((diet) => {
-              return (
-                <tr>
-                  <td
-                    style={{
-                      boxShadow: "0 0 30px rgba(0, 0, 0, 0.25),",
-                      border: "1px solid black",
-                      height: "70px",
-                    }}
-                  >
-                    {diet.dietID}
-                  </td>
-                  <td
-                    style={{
-                      boxShadow: "0 0 30px rgba(0, 0, 0, 0.25),",
-                      border: "1px solid black",
-                    }}
-                  >
-                    {dateFormat(diet.date)}
-                  </td>
-                  <td
-                    style={{
-                      boxShadow: "0 0 30px rgba(0, 0, 0, 0.25),",
-                      border: "1px solid black",
-                    }}
-                  >
-                    {diet.dietDescription}
-                  </td>
+          <tbody>
+            {playerDietPlan.map((breakfastDiet) => {
+              return breakfastDiet.dietPlan
+                .filter((diet) => {
+                  if (search === "") {
+                    return diet;
+                  } else if (
+                    (diet.dietID.toLowerCase().includes(search.toLowerCase()),
+                    diet.dietDescription
+                      .toLowerCase()
+                      .includes(search.toLowerCase()))
+                  ) {
+                    return diet;
+                  }
+                })
 
-                  <td
-                    style={{
-                      boxShadow: "0 0 30px rgba(0, 0, 0, 0.25),",
-                      border: "1px solid black",
-                    }}
-                  >
-                    {diet.totalCalories}
-                  </td>
-                  <td
-                    style={{
-                      boxShadow: "0 0 30px rgba(0, 0, 0, 0.25),",
-                      border: "1px solid black",
-                    }}
-                  >
-                    {diet.totalFat}
-                  </td>
-                  <td
-                    style={{
-                      boxShadow: "0 0 30px rgba(0, 0, 0, 0.25),",
-                      border: "1px solid black",
-                    }}
-                  >
-                    {diet.totalProtien}
-                  </td>
+                .map((diet) => {
+                  return (
+                    <tr>
+                      <td
+                        style={{
+                          boxShadow: "0 0 30px rgba(0, 0, 0, 0.25),",
+                          border: "1px solid black",
+                          height: "70px",
+                        }}
+                      >
+                        {diet.dietID}
+                      </td>
+                      <td
+                        style={{
+                          boxShadow: "0 0 30px rgba(0, 0, 0, 0.25),",
+                          border: "1px solid black",
+                        }}
+                      >
+                        {dateFormat(diet.date)}
+                      </td>
+                      <td
+                        style={{
+                          boxShadow: "0 0 30px rgba(0, 0, 0, 0.25),",
+                          border: "1px solid black",
+                        }}
+                      >
+                        {diet.dietDescription}
+                      </td>
 
-                  <td>
-                    <button
-                      style={{ backgroundColor: "red", color: "white" }}
-                      onClick={() => {
-                        deleteDiet(`${breakfastDiet.playerID}-${diet.dietID}`);
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              );
-            });
-          })}
+                      <td
+                        style={{
+                          boxShadow: "0 0 30px rgba(0, 0, 0, 0.25),",
+                          border: "1px solid black",
+                        }}
+                      >
+                        {diet.totalCalories}
+                      </td>
+                      <td
+                        style={{
+                          boxShadow: "0 0 30px rgba(0, 0, 0, 0.25),",
+                          border: "1px solid black",
+                        }}
+                      >
+                        {diet.totalFat}
+                      </td>
+                      <td
+                        style={{
+                          boxShadow: "0 0 30px rgba(0, 0, 0, 0.25),",
+                          border: "1px solid black",
+                        }}
+                      >
+                        {diet.totalProtien}
+                      </td>
+
+                      <td
+                        style={{
+                          boxShadow: "0 0 30px rgba(0, 0, 0, 0.25),",
+                          border: "1px solid black",
+                        }}
+                      >
+                        <button
+                          style={{
+                            backgroundColor: "red",
+                            color: "white",
+                            padding: 10,
+                            width: 80,
+                          }}
+                          onClick={() => {
+                            deleteDiet(
+                              `${breakfastDiet.playerID}-${diet.dietID}`
+                            );
+                          }}
+                        >
+                          Delete
+                        </button>
+                        &nbsp;&nbsp;&nbsp;
+                        <button
+                          style={{
+                            backgroundColor: "goldenrod",
+                            color: "white",
+                            padding: 10,
+                            width: 80,
+                          }}
+                        >
+                          <Link
+                            to={`/editDietPlan/${diet._id}`}
+                            style={{ color: "white", textDecoration: "none" }}
+                          >
+                            Edit
+                          </Link>
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                });
+            })}
+          </tbody>
         </table>
       </center>
     </div>
