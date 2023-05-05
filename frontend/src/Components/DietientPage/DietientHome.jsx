@@ -53,7 +53,7 @@ function dietientHome() {
                 }}
               >
                 <Link
-                  to="/breakfastDietPlan"
+                  to="/playerDietPlan"
                   style={{
                     fontWeight: "bold",
                     textDecoration: "none",

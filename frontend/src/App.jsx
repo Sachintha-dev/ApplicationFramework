@@ -21,7 +21,7 @@ function App() {
           <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/" exact element={<DietientHome />} />
           <Route
-            path="/breakfastDietPlan"
+            path="/playerDietPlan"
             exact
             element={<AdminBreakfastDietPlan />}
           />
