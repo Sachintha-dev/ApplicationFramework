@@ -4,11 +4,11 @@ import React from "react";
 import Home from "../src/Components/HomePage/Home";
 import SideBar from "../src/Components/SideBar/SideBar";
 import "./App.css";
+import CricketerDietplanHome from "./components/CricketerPage/CricketerDietplanHome";
 import DietientHome from "./components/DietientPage/DietientHome";
 import AdminBreakfastDietPlan from "./components/DietientPage/AdminBreakfastDietPlan";
 import AdminViewBrekfastDiet from "./components/DietientPage/AdminViewBrekfastDiet";
 import AdminCreateBrekfastDiet from "./components/DietientPage/AdminCreateBrekfastDiet";
-import CricketerDietplanHome from "./components/CricketerDietplanHome";
 import Chatbot from "./Components/ChatBot/Chatbot";
 import AdminEditBreakfastDetails from "./components/DietientPage/AdminEditBreakfastDetails";
 
@@ -26,7 +26,7 @@ function App() {
             element={<AdminBreakfastDietPlan />}
           />
           <Route
-            path="/breakfastDietPlan/:playerID"
+            path="/playerDietPlan/:playerID"
             exact
             element={<AdminViewBrekfastDiet />}
           />
