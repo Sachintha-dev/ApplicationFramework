@@ -82,7 +82,6 @@ function AdminCreateBrekfastDiet() {
           <form
             onSubmit={createDietPlan}
             style={{
-              background: "rgb(2,0,36)",
               background:
                 "linear-gradient(90deg, hsla(208, 7%, 65%, 1) 0%, hsla(191, 5%, 80%, 1) 100%)",
               padding: "20px",
