@@ -7,6 +7,7 @@ const {
   deleteBreakfastDietDetails,
   getAllBreakfastDietPlans,
   updateDietPlan,
+  searchDietPlan,
 } = require("../controllers/breakfastDietPlanController");
 
 //Add new breakfast diet plan
@@ -25,5 +26,8 @@ router.delete(
 router.get("/getBreakfastPlayerDetails/", getAllBreakfastDietPlans);
 
 //Update diet plan
-router.put("/updateBreakfastDetails/:playerID", updateDietPlan);
+router.put("/updateDietDetails/:playerID", updateDietPlan);
+
+//Search diet Plan
+router.get("/searchDietDetails/:id", searchDietPlan);
 module.exports = router;
