@@ -12,11 +12,14 @@ import CricketerDietplanHome from "./components/CricketerDietplanHome";
 import Chatbot from "./Components/ChatBot/Chatbot";
 import Login from "./Components/Login/Login";
 import LoginPage from "./Components/Login page/LoginPage";
+import RegistrationForm from "./Components/RegitrationForm/RegistrationForm";
+import UserDetailCard from "./Components/UserDetailsCard/UserDetailsCard";
+import AlluserAdminLayout from "./Components/Layout/AlluserAdminLayout";
 
 function App() {
   return (
     <div>
-      <LoginPage />
+      <AlluserAdminLayout />
     </div>
   );
 }
