@@ -1,21 +1,22 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import Footer from "../Footer/Footer";
 import NavBar from "../NavBar/NavBar";
-import Sidebar from "../SideNav/SideNav";
+import Sidenav from "../SideNav/SideNav";
 
 function AlluserAdminLayout() {
   return (
-    <Grid templateAreas={`"nav nav""aside main""footer footer"`}>
-      <GridItem area={"nav"} bg={"tomato"}>
+    <Grid
+      templateAreas={`"nav nav""aside main""footer footer"`}
+      templateColumns={"240px 1fr"}
+    >
+      <GridItem area={"nav"}>
         <NavBar />
       </GridItem>
-      <GridItem area={"aside"} bg={"papayawhip"}>
-        <Sidebar />
+      <GridItem area={"aside"}>
+        <Sidenav />
       </GridItem>
-      <GridItem area={"main"} bg={"dodgerblue"}>
-        main
-      </GridItem>
-      <GridItem area={"footer"} bg={"dodgerblue"}>
+      <GridItem area={"main"}>main</GridItem>
+      <GridItem area={"footer"}>
         <Footer />
       </GridItem>
     </Grid>

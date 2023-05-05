@@ -1,4 +1,3 @@
-import React, { ReactNode } from "react";
 import {
   Box,
   CloseButton,
@@ -8,9 +7,9 @@ import {
   Link,
   Drawer,
   DrawerContent,
-  Text,
   useDisclosure,
   Image,
+  Text,
 } from "@chakra-ui/react";
 import {
   FiHome,
@@ -30,10 +29,11 @@ const LinkItems = [
   { name: "Settings", icon: FiSettings },
 ];
 
-export default function Sidebar({ children }) {
+export default function Sidenav({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box minH="100vh" bg="#edf2f6">
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -63,17 +63,24 @@ const SidebarContent = ({ onClose, ...rest }) => {
   return (
     <Box
       transition="3s ease"
-      bg={useColorModeValue("white", "gray.900")}
+      bg={useColorModeValue("white", "gray.700")}
       borderRight="1px"
       borderRightColor={useColorModeValue("gray.200", "gray.700")}
       w={{ base: "full", md: 60 }}
       pos="fixed"
       h="full"
+      top="0"
+      left="0"
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Image src={logo} boxSize="75px" />
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
+        <Box display="flex" alignItems="center" justifyContent="center">
+          <Image src={logo} alt="Logo" style={{ height: 60, width: "auto" }} />
+          <Text fontFamily="sans-serif" fontSize="2xl" ml={2}>
+            HealthPitch
+          </Text>
+        </Box>
       </Flex>
       {LinkItems.map((link) => (
         <NavItem key={link.name} icon={link.icon}>

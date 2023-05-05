@@ -25,8 +25,13 @@ export default function NavBar() {
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Box>
-            <Text fontFamily="sans-serif" fontSize="2xl">
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Image
+              src={logo}
+              alt="Logo"
+              style={{ height: 60, width: "auto" }}
+            />
+            <Text fontFamily="sans-serif" fontSize="2xl" ml={2}>
               HealthPitch
             </Text>
           </Box>
