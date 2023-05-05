@@ -14,12 +14,13 @@ import Login from "./Components/Login/Login";
 import LoginPage from "./Components/Login page/LoginPage";
 import RegistrationForm from "./Components/RegitrationForm/RegistrationForm";
 import UserDetailCard from "./Components/UserDetailsCard/UserDetailsCard";
-import AlluserAdminLayout from "./Components/Layout/AlluserAdminLayout";
+import AlluserAdminLayout from "./Components/Layout/AdminLayout";
+import UserDetailspage from "./Components/Pages/UserDetailspage";
 
 function App() {
   return (
     <div>
-      <AlluserAdminLayout />
+      <UserDetailspage />
     </div>
   );
 }
