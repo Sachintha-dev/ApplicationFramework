@@ -12,7 +12,7 @@ function AdminViewBrekfastDiet() {
   useEffect(() => {
     async function fetchPlayerDietData() {
       const response = await fetch(
-        `http://localhost:5012/api/breakfastPlan/getBreakfastPlayerDetails/${params.playerID.toString()}`
+        `http://localhost:5012/api/breakfastPlan/getBreakfastPlayerDetails/${params.playerID}`
       );
       if (!response.ok) {
         window.alert(`${params.id.toString()}`);
