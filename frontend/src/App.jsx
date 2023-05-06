@@ -18,11 +18,12 @@ import AlluserAdminLayout from "./Components/Layout/AdminLayout";
 import UserDetailspage from "./Components/Pages/UserDetailspage";
 import UserTable from "./Components/UserTable/UserTable";
 import UseerList from "./Components/Pages/UserList";
+import Recovorey from "./Components/Recovory/Recovery";
 
 function App() {
   return (
     <div>
-      <Login />
+      <Recovorey />
     </div>
   );
 }
