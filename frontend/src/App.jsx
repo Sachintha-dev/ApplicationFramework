@@ -19,11 +19,12 @@ import UserDetailspage from "./Components/Pages/UserDetailspage";
 import UserTable from "./Components/UserTable/UserTable";
 import UseerList from "./Components/Pages/UserList";
 import Recovorey from "./Components/Recovory/Recovery";
+import Reset from "./Components/Reset/Reset";
 
 function App() {
   return (
     <div>
-      <Recovorey />
+      <Reset />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import {
   Button,
+  Checkbox,
   Flex,
   FormControl,
   FormLabel,
@@ -10,11 +11,13 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
+import { Toaster } from "react-hot-toast";
+import { NavLink } from "react-router-dom";
 
 import logo from "../../assets/logo.png";
 import { emailValidate, passwordValidate } from "../../helper/validate";
 
-export default function Recovery() {
+export default function Reset() {
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -48,21 +51,32 @@ export default function Recovery() {
     >
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
-          <Heading fontSize={"2xl"}>Recovery account</Heading>
-          <FormControl id="OTP">
-            <FormLabel>OTP</FormLabel>
-            <Input type="text" />
+          <Heading fontSize={"2xl"}>Reset Password</Heading>
+          <FormControl id="password">
+            <FormLabel>Password</FormLabel>
+            <Input
+              type="confirmpassword"
+              {...formik.getFieldProps("confirm_PWD")}
+            />
+          </FormControl>
+          <FormControl id="confirm_PWD">
+            <FormLabel>Confirm Password</FormLabel>
+            <Input
+              type="confirmpassword"
+              {...formik.getFieldProps("confirm_PWD")}
+            />
+            {formik.touched.password && formik.errors.password ? (
+              <div>{formik.errors.password}</div>
+            ) : null}
           </FormControl>
           <Stack spacing={6}>
             <Stack
               direction={{ base: "column", sm: "row" }}
               align={"start"}
               justify={"space-between"}
-            >
-              <Link color={"blue.500"}>Cant get OTP Resend it </Link>
-            </Stack>
+            ></Stack>
             <Button type="submit" colorScheme={"blue"} variant={"solid"}>
-              Recovery
+              Sign in
             </Button>
           </Stack>
         </Stack>
