@@ -16,11 +16,13 @@ import RegistrationForm from "./Components/RegitrationForm/RegistrationForm";
 import UserDetailCard from "./Components/UserDetailsCard/UserDetailsCard";
 import AlluserAdminLayout from "./Components/Layout/AdminLayout";
 import UserDetailspage from "./Components/Pages/UserDetailspage";
+import UserTable from "./Components/UserTable/UserTable";
+import UseerList from "./Components/Pages/UserList";
 
 function App() {
   return (
     <div>
-      <UserDetailspage />
+      <UseerList />
     </div>
   );
 }

@@ -2,7 +2,14 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import Footer from "../Footer/Footer";
 import NavBar from "../NavBar/NavBar";
 import Sidenav from "../SideNav/SideNav";
-import UserDetails from "../USerDetails/UserDetailsComonents";
+import UserTable from "../UserTable/UserTable";
+
+const data = [
+  { name: "John", role: "Admin" },
+  { name: "Jane", role: "User" },
+  { name: "Bob", role: "User" },
+  { name: "Alice", role: "Admin" },
+];
 
 function UserDetailspage() {
   return (
@@ -17,7 +24,7 @@ function UserDetailspage() {
         <Sidenav />
       </GridItem>
       <GridItem area={"main"}>
-        <UserDetails data={data} />
+        <UserTable data={data} />
       </GridItem>
       <GridItem area={"footer"}>
         <Footer />

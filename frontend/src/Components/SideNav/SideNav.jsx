@@ -13,19 +13,21 @@ import {
 } from "@chakra-ui/react";
 import {
   FiHome,
-  FiTrendingUp,
+  FiMenu,
   FiCompass,
   FiStar,
   FiSettings,
+  FiUsers,
 } from "react-icons/fi";
+import { AiFillContainer } from "react-icons/ai";
 
 import logo from "../../assets/logo.png";
 
 const LinkItems = [
   { name: "Home", icon: FiHome },
-  { name: "Trending", icon: FiTrendingUp },
-  { name: "Explore", icon: FiCompass },
-  { name: "Favourites", icon: FiStar },
+  { name: "User Add", icon: FiUsers },
+  { name: "User List", icon: FiMenu },
+  { name: "Notifications", icon: AiFillContainer },
   { name: "Settings", icon: FiSettings },
 ];
 
