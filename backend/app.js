@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 const brekfastDiet = require("./routes/breakfastDietPlanRoute");
+const profileRoute = require("./routes/ProfileRoute");
 
 app.use(express.json());
 app.use(cors());
@@ -12,6 +13,7 @@ app.use(cors());
 const PORT = 5012;
 
 app.use("/api/breakfastPlan/", brekfastDiet);
+app.use("/", profileRoute);
 
 mongoose.connect(
   "mongodb+srv://senulananayakkara88:gwPB7uWsD8eKIYfO@cricketdb.ozfnpql.mongodb.net/test",
