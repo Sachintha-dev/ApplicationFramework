@@ -109,6 +109,7 @@ async function login(req, res) {
       {
         userId: user._id,
         username: user.email,
+        userRole: user.userRole,
       },
       "key",
       { expiresIn: "24h" }
