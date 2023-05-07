@@ -5,6 +5,7 @@ const cricketerSchema = new mongoose.Schema({
   playingRole: String,
   battingStyle: String,
   bowlingStyle: String,
+  teams: [{ type: String }],
 });
 
 const Cricketer = User.discriminator("Cricketer", cricketerSchema);
