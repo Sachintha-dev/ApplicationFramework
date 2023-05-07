@@ -80,9 +80,30 @@ const dietitianMiddleware = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, key);
     req.user = decoded.user;
-    // Check user role
     if (req.user.userrole !== "dietitian") {
       return res.status(403).send({ message: "Dietitian Access denied" });
+    }
+  } catch {
+    return res.status(401).send({ message: "Invalid token" });
+  }
+  next();
+};
+const doctorMiddleware = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) {
+    return res.status(401).send({ message: "Authorization header missing" });
+  }
+
+  const token = authHeader.split(" ")[1];
+  if (!token) {
+    return res.status(401).send({ message: "Token missing" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, key);
+    req.user = decoded.user;
+    if (req.user.userrole !== "doctor") {
+      return res.status(403).send({ message: "Doctor Access denied" });
     }
   } catch {
     return res.status(401).send({ message: "Invalid token" });
