@@ -86,7 +86,7 @@ function ViewCurrentDietPlans() {
       <SideBar />
       <div style={{ marginLeft: "80px" }}>
         <center>
-          <h1>View Current Diet Plans</h1>
+          <h1>View Your Daily Meal Diets </h1>
         </center>
         <br />
         <div style={{ display: "flex", justifyContent: "right" }}>
@@ -126,7 +126,7 @@ function ViewCurrentDietPlans() {
               backgroundColor: "lightgrey",
             }}
             type="search"
-            placeholder="   Search for DietPlans ..."
+            placeholder="   Search for Diet Meals ..."
             name="searchQuery"
             onChange={(e) => {
               setsearch(e.target.value);
@@ -145,7 +145,7 @@ function ViewCurrentDietPlans() {
                 </StyledTableCell>
                 <StyledTableCell align="right">Notes</StyledTableCell>
                 <StyledTableCell align="right">
-                  Calory Measure&nbsp;(g)
+                  Calories&nbsp;(Kcal)
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   Fat Measure&nbsp;(g)
