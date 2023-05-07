@@ -162,12 +162,12 @@ function ViewCurrentDietPlans() {
                   if (search === "") {
                     return mealPlan;
                   } else if (
-                    (mealPlan.date
+                    mealPlan.date
                       .toLowerCase()
-                      .includes(search.toLocaleLowerCase()),
+                      .includes(search.toLocaleLowerCase()) ||
                     mealPlan.mealDescription
                       .toLowerCase()
-                      .includes(search.toLocaleLowerCase()))
+                      .includes(search.toLocaleLowerCase())
                   ) {
                     return mealPlan;
                   }

@@ -45,7 +45,7 @@ function AdminViewBrekfastDiet() {
       <SideBar />
       <div style={{ marginLeft: 70 }}>
         <center>
-          <h1>View Breakfast Diet Plan Provide by Dietient</h1>
+          <h1>View Breakfast Diet Plans Provided by dietitian</h1>
           <h1>{playerName}</h1>
         </center>
 
@@ -59,7 +59,7 @@ function AdminViewBrekfastDiet() {
               backgroundColor: "lightgrey",
             }}
             type="search"
-            placeholder="   Search for DietPlans ..."
+            placeholder="   Search for Diet Plans ..."
             name="searchQuery"
             onChange={(e) => {
               setsearch(e.target.value);
