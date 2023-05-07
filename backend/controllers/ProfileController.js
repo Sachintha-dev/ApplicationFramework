@@ -144,15 +144,43 @@ async function verifyOTP(req, res) {
 }
 
 async function createRestSession(req, res) {
-  res.json("Create Rest Session");
+  if (req.app.locals.resetSession) {
+    req.app.locals.resetSession = false;
+    return res.status(201).send({ msg: "Access Granted" });
+  }
+  return res.status(400).send({ error: "Session Expired" });
 }
 
-async function resetpassword(req, res) {
-  res.json("Reset Password");
-}
+async function resetPassword(req, res) {
+  try {
+    if (!req.app.locals.resetSession) {
+      return res.status(440).send({ error: "Session expired!" });
+    }
 
-async function registermail(req, res) {
-  res.json("Registermail");
+    const { email, password } = req.body;
+
+    try {
+      const user = await UserModel.findOne({ email });
+
+      if (!user) {
+        return res.status(404).send({ error: "User not found" });
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      await UserModel.updateOne(
+        { username: user.username },
+        { password: hashedPassword }
+      );
+
+      req.app.locals.resetSession = false; // reset session
+      return res.status(201).send({ msg: "Record updated...!" });
+    } catch (error) {
+      return res.status(500).send({ error: "Unable to update password" });
+    }
+  } catch (error) {
+    return res.status(401).send({ error });
+  }
 }
 
 module.exports = {
@@ -163,7 +191,6 @@ module.exports = {
   updateUser,
   genarateOTP,
   createRestSession,
-  resetpassword,
-  registermail,
+  resetPassword,
   verifyOTP,
 };
