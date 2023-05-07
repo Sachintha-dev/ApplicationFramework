@@ -3,9 +3,7 @@ const router = express.Router();
 
 const controllers = require("../controllers/ProfileController");
 
-router.route("/register").post((req, res) => {
-  res.json("Register");
-});
+router.route("/register").post(controllers.register);
 //router.route("/registermail").post(controllers.register);
 router.route("/authenticate").post((Req, res) => {
   res.end();
