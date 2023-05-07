@@ -28,6 +28,7 @@ const UserSchema = new mongoose.Schema({
   address: { type: String },
   profile: { type: String },
   birthDay: { type: Date },
+  education: { type: String },
 });
 
 module.exports = mongoose.model("User", UserSchema);
