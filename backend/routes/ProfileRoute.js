@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const middleware = require("../middleware/auth");
 const controllers = require("../controllers/ProfileController");
 
 router.route("/register").post(controllers.register);
@@ -8,11 +8,17 @@ router.route("/register").post(controllers.register);
 router.route("/authenticate").post((Req, res) => {
   res.end();
 });
-router.route("/login").post(controllers.login);
+router.route("/login").post(controllers.verifyUser, controllers.login);
 //router.route("/registermail").post();
 
 router.route("/user/:username").get(controllers.getUser);
-router.route("/genarateOTP").get(controllers.genarateOTP);
+router
+  .route("/genarateOTP")
+  .get(
+    controllers.verifyUser,
+    middleware.localVariable,
+    controllers.genarateOTP
+  );
 router.route("/verifyOTP").get(controllers.verifyOTP);
 router.route("/createRestSession").get(controllers.createRestSession);
 

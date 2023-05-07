@@ -1,5 +1,19 @@
 const UserModel = require("../models/User.model");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const otpGenerator = require("otp-generator");
+
+async function verifyUser(req, res, next) {
+  try {
+    const { email } = req.method == "GET" ? req.query : req.body;
+
+    let exist = await UserModel.findOne({ email });
+    if (!exist) return res.status(404).send({ error: "Can't find User!" });
+    next();
+  } catch (error) {
+    return res.status(404).send({ error: "Authentication Error" });
+  }
+}
 
 async function register(req, res) {
   try {
@@ -46,18 +60,19 @@ async function login(req, res) {
       return res.status(400).send({ error: "Password does not match" });
     }
 
-    // const token = jwt.sign(
-    //   {
-    //     userId: user._id,
-    //     username: user.username,
-    //   },
-    //   ENV.JWT_SECRET,
-    //   { expiresIn: "24h" }
-    // );
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        username: user.email,
+      },
+      "key",
+      { expiresIn: "24h" }
+    );
 
     return res.status(200).send({
       msg: "Login Successful...!",
       username: user,
+      token: token,
     });
   } catch (error) {
     console.error(error);
@@ -109,14 +124,27 @@ async function updateUser(req, res) {
 }
 
 async function genarateOTP(req, res) {
-  res.json("Genarate OTP");
+  req.app.locals.OTP = await otpGenerator.generate(6, {
+    upperCaseAlphabets: false,
+    specialChars: false,
+    lowerCaseAlphabets: false,
+  });
+  res.status(200).send({ code: req.app.locals.OTP });
+}
+
+async function verifyOTP(req, res) {
+  console.log(req.app.locals.OTP);
+  const { code } = req.query;
+  if (parseInt(code) === parseInt(req.app.locals.OTP)) {
+    req.app.locals.OTP = null;
+    req.app.locals.resetSession = true;
+    return res.status(201).send({ msg: "OTP Verified" });
+  }
+  return res.status(400).send({ error: "OTP Not Verified" });
 }
 
 async function createRestSession(req, res) {
   res.json("Create Rest Session");
-}
-async function verifyOTP(req, res) {
-  res.json("Verify the OTP");
 }
 
 async function resetpassword(req, res) {
@@ -129,6 +157,7 @@ async function registermail(req, res) {
 
 module.exports = {
   register,
+  verifyUser,
   login,
   getUser,
   updateUser,
