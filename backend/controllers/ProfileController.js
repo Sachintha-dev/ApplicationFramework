@@ -17,7 +17,7 @@ async function verifyUser(req, res, next) {
 
 async function register(req, res) {
   try {
-    const { username, password, email, profile } = req.body;
+    const { username, password, email, profile, userRole } = req.body;
 
     const existingUser = await UserModel.findOne({ email: email });
     if (existingUser) {
@@ -30,6 +30,10 @@ async function register(req, res) {
       password: hashedPassword,
       profile: profile || "",
       email,
+      userRole: userRole || "cricketer",
+      fullName: "",
+      mobile: null,
+      address: "",
     });
 
     const savedUser = await user.save();

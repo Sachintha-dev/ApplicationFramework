@@ -1,5 +1,3 @@
-const mongoose = require("mongoose");
-
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -16,8 +14,14 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Please provide a unique email"],
     unique: true,
   },
+  userRole: {
+    type: String,
+    enum: ["admin", "doctor", "dietitian", "cricketer"],
+    default: "cricketer",
+  },
   firstName: { type: String },
   lastName: { type: String },
+  fullName: { type: String },
   mobile: { type: Number },
   address: { type: String },
   profile: { type: String },
