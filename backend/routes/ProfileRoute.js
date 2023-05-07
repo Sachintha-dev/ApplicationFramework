@@ -24,5 +24,6 @@ router.route("/createRestSession").get(controllers.createRestSession);
 
 router.route("/updateuser").put(controllers.updateUser);
 router.route("/resetpassword").put(controllers.resetPassword);
+router.route("/registercrickter").post(controllers.registerCrickter);
 
 module.exports = router;

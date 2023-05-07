@@ -1,4 +1,5 @@
 const UserModel = require("../models/User.model");
+const CricketerModel = require("../models/crickter.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const otpGenerator = require("otp-generator");
@@ -15,7 +16,7 @@ async function verifyUser(req, res, next) {
   }
 }
 
-async function register(req, res) {
+async function registerUser(req, res) {
   try {
     const { username, password, email, profile, userRole } = req.body;
 
@@ -41,6 +42,46 @@ async function register(req, res) {
       return res.status(201).json({ msg: "User registered successfully" });
     } else {
       return res.status(500).json({ error: "Failed to register user" });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+async function registerCrickter(req, res) {
+  try {
+    const {
+      username,
+      password,
+      email,
+      profile,
+      playingRole,
+      battingStyle,
+      bowlingStyle,
+    } = req.body;
+
+    const existingUser = await CricketerModel.findOne({ email: email });
+    if (existingUser) {
+      return res.status(400).json({ error: "Email already exists" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const cricketer = new CricketerModel({
+      username,
+      password: hashedPassword,
+      profile: profile || "",
+      email,
+      playingRole,
+      battingStyle,
+      bowlingStyle,
+    });
+
+    const savedCricketer = await cricketer.save();
+    if (savedCricketer) {
+      return res.status(201).json({ msg: "Cricketer registered successfully" });
+    } else {
+      return res.status(500).json({ error: "Failed to register cricketer" });
     }
   } catch (error) {
     console.error(error);
@@ -188,7 +229,7 @@ async function resetPassword(req, res) {
 }
 
 module.exports = {
-  register,
+  register: registerUser,
   verifyUser,
   login,
   getUser,
@@ -197,4 +238,5 @@ module.exports = {
   createRestSession,
   resetPassword,
   verifyOTP,
+  registerCrickter,
 };
