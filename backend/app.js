@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 const brekfastDiet = require("./routes/breakfastDietPlanRoute");
-profileRoute = require("./routes/ProfileRoute");
+const profileRoute = require("./routes/ProfileRoute");
 
 app.use(express.json());
 app.use(cors());
