@@ -1,5 +1,50 @@
+const UserModel = require("../models/User.model");
+const bcrypt = require("bcryptjs");
+
 async function register(req, res) {
-  res.json("Register");
+  try {
+    const { username, password, email, profile } = req.body;
+
+    const existEmail = new Promise((resolve, reject) => {
+      UserModel.findOne({ email: email }, (err, email) => {
+        if (err) reject(new Error(err));
+        if (email) reject(new Error("Email already exist"));
+
+        resolve();
+      });
+    });
+    Promise.all([existEmail])
+      .then(() => {
+        if (password) {
+          bcrypt
+            .hash(password, 10)
+            .then((hashedPassword) => {
+              const user = new UserModel({
+                username,
+                password: hashedPassword,
+                profile: profile || "",
+                email,
+              });
+              user
+                .save()
+                .then((result) =>
+                  res.status(201).send({ msg: "User Register Successfully" })
+                )
+                .catch((error) => res.status(500).send({ error }));
+            })
+            .catch((error) => {
+              return res.status(500).send({
+                error: "Enable to hashed password",
+              });
+            });
+        }
+      })
+      .catch((error) => {
+        return res.status(500).send({ error });
+      });
+  } catch (error) {
+    return res.status(500).send(error);
+  }
 }
 
 async function login(req, res) {
