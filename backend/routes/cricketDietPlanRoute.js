@@ -22,4 +22,7 @@ router.delete("/deleteMealDetails/:id", deleteMeal);
 //Update meal details
 router.put("/updateMealDetails/:id", updateMeal);
 
+//Search meal
+router.get("/searchMealDetails/:id", searchMealById);
+
 module.exports = router;

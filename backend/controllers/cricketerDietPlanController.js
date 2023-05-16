@@ -87,7 +87,7 @@ const deleteMeal = async (req, res) => {
 
 const searchMealById = async (req, res) => {
   try {
-    const meal = await Meal.findById(req.params);
+    const meal = await Meal.findById(req.params.id);
     if (!meal) {
       return res.status(404).json({ error: "Meal not found" });
     }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import Chart from "chart.js/auto";
+import Button from "@mui/material/Button";
+import SideBar from "../SideBar/SideBar";
 
 function CricketerDietplanHome() {
   const [cricketerDietPlan, setcricketerDietPlan] = useState([]);
@@ -84,7 +86,10 @@ function CricketerDietplanHome() {
         type: "bar",
         data: chartData,
         options: {
-          aspectRatio: true,
+          responsive: true,
+          maintainAspectRatio: false,
+          width: 300,
+          height: 200,
         },
       });
 
@@ -94,13 +99,48 @@ function CricketerDietplanHome() {
 
   return (
     <div>
-      <h1>
-        CricketerDietplanHome
-        <canvas
-          ref={chartContainer}
-          style={{ height: "100px", width: "100px" }}
-        />
-      </h1>
+      <SideBar />
+      <div>
+        <center>
+          <h1>Cricketer Diet Plan Home Page</h1>
+        </center>
+        <div style={{ display: "flex", justifyContent: "right" }}>
+          <Button
+            variant="contained"
+            color="success"
+            style={{ width: "150px", color: "white" }}
+          >
+            <Link
+              style={{ textDecoration: "none", color: "white" }}
+              to={`/cricketerDietPlan/viewMealPlan/${params.playerID.toString()}`}
+            >
+              Breakfast
+            </Link>
+          </Button>
+          &nbsp;&nbsp;&nbsp;
+          <Button
+            variant="contained"
+            color="success"
+            style={{ width: "150px", color: "white" }}
+          >
+            Lunch
+          </Button>
+          &nbsp;&nbsp;&nbsp;
+          <Button
+            variant="contained"
+            color="success"
+            style={{ width: "150px", color: "white" }}
+          >
+            Dinner
+          </Button>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div style={{ height: "400px" }}>
+          <canvas ref={chartContainer} />
+        </div>
+      </div>
     </div>
   );
 }

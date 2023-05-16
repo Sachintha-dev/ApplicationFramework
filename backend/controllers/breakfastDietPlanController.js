@@ -1,3 +1,4 @@
+const DietPlan = require("../models/breakfastDietPlanModel");
 const Breakfast = require("../models/breakfastDietPlanModel");
 
 //Add new Diet Paln
@@ -7,10 +8,10 @@ const addBreakfastPlan = async (req, res) => {
   const dietID = req.body.dietID;
   const date = Date(req.body.date);
   const type = req.body.type;
+  const dietDescription = req.body.dietDescription;
   const totalCalories = Number(req.body.totalCalories);
   const totalFat = Number(req.body.totalFat);
   const totalProtien = Number(req.body.totalProtien);
-  const dietDescription = req.body.dietDescription;
 
   let breakfast = await Breakfast.findOne({ playerID: playerID });
   if (!breakfast) {
@@ -34,10 +35,10 @@ const addBreakfastPlan = async (req, res) => {
       dietID,
       date,
       type,
+      dietDescription,
       totalCalories,
       totalFat,
       totalProtien,
-      dietDescription,
     });
   }
 
@@ -66,13 +67,14 @@ const getBreakfastPlanDetails = async (req, res) => {
     const breakfastDetails = breakfast.map((breakfastDiet) => {
       const dietPlan = breakfastDiet.dietPlan.map((dietPlan) => {
         return {
+          _id: dietPlan._id,
           dietID: dietPlan.dietID,
           date: dietPlan.date,
           type: dietPlan.type,
+          dietDescription: dietPlan.dietDescription,
           totalCalories: dietPlan.totalCalories,
           totalFat: dietPlan.totalFat,
           totalProtien: dietPlan.totalProtien,
-          dietDescription: dietPlan.dietDescription,
         };
       });
 
@@ -134,12 +136,12 @@ const deleteBreakfastDietDetails = async (req, res) => {
 //Update a diet plan of user
 const updateDietPlan = async (req, res) => {
   try {
-    const playerID = req.params.playerID;
-    const updateDietPlan = req.body;
+    const dietID = req.params.playerID;
+    const updatedDietPlan = req.body;
 
     const breakfastDiat = await Breakfast.findOneAndUpdate(
-      { playerID: playerID },
-      { $set: { dietPlan: updateDietPlan } },
+      { "dietPlan._id": dietID },
+      { $set: { "dietPlan.$": updatedDietPlan } },
       { new: true }
     );
 
@@ -154,6 +156,25 @@ const updateDietPlan = async (req, res) => {
   }
 };
 
+//Search diet plan by ID
+const searchDietPlan = async (req, res) => {
+  try {
+    const dietID = req.params.id;
+    const diet = await Breakfast.findOne(
+      { "dietPlan._id": dietID },
+      { dietPlan: { $elemMatch: { _id: dietID } } }
+    );
+
+    if (!diet) {
+      return res.json("Search diet is not found");
+    }
+
+    return res.status(200).json(diet);
+  } catch (err) {
+    res.status(500).json("Internal Server Error");
+  }
+};
+
 //Export functions
 
 module.exports = {
@@ -162,4 +183,5 @@ module.exports = {
   getAllBreakfastDietPlans,
   deleteBreakfastDietDetails,
   updateDietPlan,
+  searchDietPlan,
 };
