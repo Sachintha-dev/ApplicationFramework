@@ -1,12 +1,9 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { useState } from "react";
-import React from "react";
-import Home from "../src/Components/HomePage/Home";
 import SideBar from "../src/Components/SideBar/SideBar";
 import "./App.css";
 import CricketerDietplanHome from "./components/CricketerPage/CricketerDietplanHome";
 import DietientHome from "./components/DietientPage/DietientHome";
-import CricketerDietplanHome from "./components/CricketerPage/CricketerDietplanHome";
+//import CricketerDietplanHome from "./components/CricketerPage/CricketerDietplanHome";
 import AdminBreakfastDietPlan from "./components/DietientPage/AdminBreakfastDietPlan";
 import AdminViewBrekfastDiet from "./components/DietientPage/AdminViewBrekfastDiet";
 import AdminCreateBrekfastDiet from "./components/DietientPage/AdminCreateBrekfastDiet";
@@ -25,6 +22,7 @@ function App() {
           <Route path="/sidebar" element={<SideBar />} />
           <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/" exact element={<DietientHome />} />
+          <Route path="/adminhome" exact element={<DietientHome />} />
           <Route
             path="/playerDietPlan"
             exact

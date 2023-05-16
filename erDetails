@@ -1,0 +1,23 @@
+[33mc44db5f[m[33m ([m[1;36mHEAD -> [m[1;32mAdmin-ui[m[33m, [m[1;31morigin/Admin-ui[m[33m)[m #3 done:user details page design
+[33m366302d[m #1 fix:side navigation position
+[33m67fc2a7[m #2 done:implementg the player card,admin ui
+[33m27f2ab6[m implmenting the login form
+[33m1ea4715[m[33m ([m[1;31morigin/dev[m[33m)[m Merge pull request #12 from Sachintha-dev/dietient-frontend
+[33m421dc95[m[33m ([m[1;31morigin/dietient-frontend[m[33m)[m Folders are structures for dietient frontend
+[33m68828a9[m Merge pull request #11 from Sachintha-dev/crickter-backend
+[33m60b86b6[m[33m ([m[1;31morigin/crickter-backend[m[33m)[m cricketer backend impliementation
+[33madafdb8[m Merge pull request #9 from Sachintha-dev/dashboard-ui
+[33md7b9bde[m[33m ([m[1;31morigin/dashboard-ui[m[33m)[m Merge branch 'dev' into dashboard-ui
+[33m90dcc6a[m Merge pull request #8 from Sachintha-dev/dietient-backend
+[33m18f2d96[m[33m ([m[1;31morigin/dietient-backend[m[33m)[m Added changes for dietien backend
+[33m5af312c[m Most part of the dieteient crud done
+[33m0c6c26a[m Added front end pages of DietientHome
+[33maf0b137[m Implemented the ChatBot
+[33mde13698[m Complete backend for dietient
+[33m24509b2[m Cretate diet plan model breakfast
+[33m811ce19[m Implemented the SideBar
+[33m89de768[m Merge pull request #1 from Sachintha-dev/dashboard-ui
+[33m08e6aca[m #1 ui-change
+[33mbac5df0[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Added app.js for backend
+[33m55afd41[m initial commit
+[33md7b5388[m Initial commit
