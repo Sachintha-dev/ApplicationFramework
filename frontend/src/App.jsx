@@ -4,6 +4,7 @@ import React from "react";
 import Home from "../src/Components/HomePage/Home";
 import SideBar from "../src/Components/SideBar/SideBar";
 import "./App.css";
+import CricketerDietplanHome from "./components/CricketerPage/CricketerDietplanHome";
 import DietientHome from "./components/DietientPage/DietientHome";
 import CricketerDietplanHome from "./components/CricketerPage/CricketerDietplanHome";
 import AdminBreakfastDietPlan from "./components/DietientPage/AdminBreakfastDietPlan";
