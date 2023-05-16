@@ -40,61 +40,26 @@ function AdminViewBrekfastDiet() {
     return newDate;
   };
 
-  async function deleteDiet(playerIDAndDietID) {
-    try {
-      const [playerID, dietID] = playerIDAndDietID.split("-");
-      window.alert(playerID + dietID);
-
-      await axios.delete(
-        `http://localhost:5012/api/breakfastPlan/deleteBreakfastPlayerDetails/${playerID}/${dietID}`
-      );
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   return (
     <div>
       <SideBar />
       <div style={{ marginLeft: 70 }}>
         <center>
-          <h1>View Breakfast Diet Plan of Player</h1>
+          <h1>View Breakfast Diet Plans Provided by dietitian</h1>
           <h1>{playerName}</h1>
         </center>
-        <button
-          style={{
-            float: "right",
-            backgroundColor: "rgb(0, 150, 255)",
-            color: "white",
-            padding: "14px",
-            width: 200,
-            fontWeight: "bold",
-            borderRadius: "20px",
-          }}
-        >
-          <Link
-            to={`/createNewDietPlan/${params.playerID.toString()}`}
-            style={{ color: "white", textDecoration: "none" }}
-          >
-            Create New Diet Plan
-          </Link>
-        </button>
-        <br /> <br />
-        <br />
-        <br />
-        <br />
+
         <div>
           <input
             style={{
-              marginLeft: "60px",
-              height: "50px",
+              marginLeft: "100px",
+              height: "40px",
               width: "250px",
               borderRadius: "35px",
               backgroundColor: "lightgrey",
             }}
             type="search"
-            placeholder="   Search for DietPlans ..."
+            placeholder="   Search for Diet Plans ..."
             name="searchQuery"
             onChange={(e) => {
               setsearch(e.target.value);
@@ -117,8 +82,9 @@ function AdminViewBrekfastDiet() {
               <th
                 style={{
                   border: "1px solid",
-                  padding: "15px 100px 15px 100px",
-                  backgroundColor: "lightgreen",
+                  padding: "10px 100px 10px 100px",
+                  backgroundColor: "rgb(15, 15, 15,0.9)",
+                  color: "white",
                 }}
               >
                 Diet_ID
@@ -127,7 +93,8 @@ function AdminViewBrekfastDiet() {
                 style={{
                   border: "1px solid",
                   padding: "0 40px 0 40px",
-                  backgroundColor: "lightgreen",
+                  backgroundColor: "rgb(15, 15, 15,0.9)",
+                  color: "white",
                 }}
               >
                 Diet_Date
@@ -137,7 +104,8 @@ function AdminViewBrekfastDiet() {
                 style={{
                   border: "1px solid",
                   padding: "0 100px 0 100px",
-                  backgroundColor: "lightgreen",
+                  backgroundColor: "rgb(15, 15, 15,0.9)",
+                  color: "white",
                 }}
               >
                 Diet_Description
@@ -146,8 +114,9 @@ function AdminViewBrekfastDiet() {
               <th
                 style={{
                   border: "1px solid",
-                  padding: "0 40px 0 40px",
-                  backgroundColor: "lightgreen",
+                  padding: "0 50px 0 50px",
+                  backgroundColor: "rgb(15, 15, 15,0.9)",
+                  color: "white",
                 }}
               >
                 Total_Calories
@@ -155,8 +124,9 @@ function AdminViewBrekfastDiet() {
               <th
                 style={{
                   border: "1px solid",
-                  padding: "15px 40px 15px 40px",
-                  backgroundColor: "lightgreen",
+                  padding: "10px 50px 10px 50px",
+                  backgroundColor: "rgb(15, 15, 15,0.9)",
+                  color: "white",
                 }}
               >
                 Total_Fat
@@ -164,20 +134,12 @@ function AdminViewBrekfastDiet() {
               <th
                 style={{
                   border: "1px solid",
-                  backgroundColor: "lightgreen",
-                  padding: "0 40px 0 40px",
+                  padding: "10px 50px 10px 50px",
+                  backgroundColor: "rgb(15, 15, 15,0.9)",
+                  color: "white",
                 }}
               >
                 Total_Protein
-              </th>
-              <th
-                style={{
-                  border: "1px solid",
-                  backgroundColor: "lightgreen",
-                  padding: "0 40px 0 40px",
-                }}
-              >
-                Action
               </th>
             </tr>
             <tbody>
@@ -190,7 +152,8 @@ function AdminViewBrekfastDiet() {
                       (diet.dietID.toLowerCase().includes(search.toLowerCase()),
                       diet.dietDescription
                         .toLowerCase()
-                        .includes(search.toLowerCase()))
+                        .includes(search.toLowerCase()),
+                      diet.date.toLowerCase().includes(search.toLowerCase()))
                     ) {
                       return diet;
                     }
@@ -248,45 +211,6 @@ function AdminViewBrekfastDiet() {
                           }}
                         >
                           {diet.totalProtien}
-                        </td>
-
-                        <td
-                          style={{
-                            boxShadow: "0 0 30px rgba(0, 0, 0, 0.25),",
-                            border: "1px solid black",
-                          }}
-                        >
-                          <button
-                            style={{
-                              backgroundColor: "red",
-                              color: "white",
-                              padding: 10,
-                              width: 80,
-                            }}
-                            onClick={() => {
-                              deleteDiet(
-                                `${breakfastDiet.playerID}-${diet.dietID}`
-                              );
-                            }}
-                          >
-                            Delete
-                          </button>
-                          &nbsp;&nbsp;&nbsp;
-                          <button
-                            style={{
-                              backgroundColor: "goldenrod",
-                              color: "white",
-                              padding: 10,
-                              width: 80,
-                            }}
-                          >
-                            <Link
-                              to={`/editDietPlan/${diet._id}`}
-                              style={{ color: "white", textDecoration: "none" }}
-                            >
-                              Edit
-                            </Link>
-                          </button>
                         </td>
                       </tr>
                     );
