@@ -1,35 +1,90 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import SideBar from "../src/Components/SideBar/SideBar";
+import "./App.css";
+import CricketerDietplanHome from "./components/CricketerPage/CricketerDietplanHome";
+import DietientHome from "./components/DietientPage/DietientHome";
+//import CricketerDietplanHome from "./components/CricketerPage/CricketerDietplanHome";
+import AdminBreakfastDietPlan from "./components/DietientPage/AdminBreakfastDietPlan";
+import AdminViewBrekfastDiet from "./components/DietientPage/AdminViewBrekfastDiet";
+import AdminCreateBrekfastDiet from "./components/DietientPage/AdminCreateBrekfastDiet";
+import Chatbot from "./Components/ChatBot/Chatbot";
+import AdminEditBreakfastDetails from "./components/DietientPage/AdminEditBreakfastDetails";
+import ViewCurrentDietPlans from "./components/CricketerPage/ViewCurrentDietPlans";
+import CreateTakenMeal from "./components/CricketerPage/CreateTakenMeal";
+import DietPlanProvided from "./components/CricketerPage/DietPlanProvided";
+import EditTakenMeal from "./components/CricketerPage/EditTakenMeal";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/sidebar" element={<SideBar />} />
+          <Route path="/chatbot" element={<Chatbot />} />
+          <Route path="/" exact element={<DietientHome />} />
+          <Route path="/adminhome" exact element={<DietientHome />} />
+          <Route
+            path="/playerDietPlan"
+            exact
+            element={<AdminBreakfastDietPlan />}
+          />
 
-export default App
+          <Route
+            path="/playerDietPlan/:playerID"
+            exact
+            element={<AdminViewBrekfastDiet />}
+          />
+
+          <Route
+            path="/createNewDietPlan/"
+            exact
+            element={<AdminCreateBrekfastDiet />}
+          />
+
+          <Route
+            path="/createNewDietPlan/:playerID/"
+            exact
+            element={<AdminCreateBrekfastDiet />}
+          />
+
+          <Route
+            path="/cricketerDietPlan/:playerID/"
+            exact
+            element={<CricketerDietplanHome />}
+          />
+
+          <Route
+            path="/editDietPlan/:dietID"
+            exact
+            element={<AdminEditBreakfastDetails />}
+          />
+
+          <Route
+            path="/cricketerDietPlan/viewMealPlan/:playerID"
+            exact
+            element={<ViewCurrentDietPlans />}
+          />
+
+          <Route
+            path="/cricketerDietPlan/addMealPlan/"
+            exact
+            element={<CreateTakenMeal />}
+          />
+
+          <Route
+            path="/cricketerDietPlan/viewDietPlan/:playerID"
+            exact
+            element={<DietPlanProvided />}
+          />
+
+          <Route
+            path="/cricketerDietPlan/editMealPlan/:id"
+            exact
+            element={<EditTakenMeal />}
+          ></Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+export default App;
